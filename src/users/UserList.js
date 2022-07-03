@@ -2,15 +2,11 @@ import React from 'react';
 import UserCard from './UserCard';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const UserList = () => {
-	const users = [
-		{ id: Math.random(), name: 'Kemi', email: 'kemi@email.com' },
-		{ id: Math.random(), name: 'Sékou', email: 'sekou@email.com' },
-		{ id: Math.random(), name: 'Adama', email: 'adama@email.com' },
-		{ id: Math.random(), name: 'Djibril', email: 'djibril@email.com' }
-	];
-	const spreader = () => users.map((user, i) => <UserCard user={user} key={i}/>);
+	const users = useSelector(store => store.users);
+	const spreader = () => users.map((user) => <UserCard user={user} key={user.id}/>);
 	return (
 		<div>
 			<Link to="/new_user">
@@ -23,7 +19,7 @@ const UserList = () => {
 				</Button>
 			</Link>
 			<div className="grid gap-5 md:grid-cols-2">
-				{users ? (
+				{users.length !==0 ? (
 					spreader()
 				) : (
 					<p className="text-center col-span-2 text-gray-700 font-semibold">No user to show </p>

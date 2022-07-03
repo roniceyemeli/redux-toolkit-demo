@@ -1,5 +1,7 @@
+import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import AddUser from './users/AddUser';
+import EditUser from './users/EditUser';
 import UserList from './users/UserList';
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
 			<Routes>
 				<Route path="/" exact element={<UserList />} />
 				<Route path="/new_user" exact element={<AddUser />} />
+				<Route path="/update_user/:id" exact element={<EditUser />} />
 			</Routes>
 		</div>
 	);
